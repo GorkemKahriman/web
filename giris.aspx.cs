@@ -10,7 +10,7 @@ using FireSharp.Interfaces;
 
 namespace DenemeCss
 {
-    public partial class Kayit : System.Web.UI.Page
+    public partial class Giris : System.Web.UI.Page
     {
         IFirebaseConfig ifc = new FirebaseConfig()
         {
@@ -19,7 +19,7 @@ namespace DenemeCss
         };
 
         IFirebaseClient client;
-        
+
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -30,36 +30,6 @@ namespace DenemeCss
             {
                 lbl_connection.Text = "Bağlantı Başarısız";
             }
-
-        }
-
-        protected void btn_kayit_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(txt_ad.Text) &&
-                string.IsNullOrWhiteSpace(txt_soyad.Text) &&
-                string.IsNullOrWhiteSpace(txt_eposta.Text) &&
-                string.IsNullOrWhiteSpace(txt_sifre.Text) &&
-                string.IsNullOrWhiteSpace(DropDownList1.Text) &&
-                string.IsNullOrWhiteSpace(DropDownList2.Text))
-            {
-                lbl_uyari.Text = "Lütfen Tüm Alanları Doldurunuz";
-            }
-
-            ClassLibrary.Uyeler uye = new ClassLibrary.Uyeler()
-            {
-                UyeAd = txt_ad.Text,
-                UyeSoyad = txt_soyad.Text,
-                UyeEposta = txt_eposta.Text,
-                Password = txt_sifre.Text,
-                FavSilah = DropDownList1.Text,
-                FavLegend = DropDownList2.Text
-            };
-
-            SetResponse set = client.Set(@"Users/" + txt_eposta.Text, uye);
-            
-
-            
-
 
         }
     }
