@@ -1,2 +1,8 @@
 #Projede MSSQL Problemleri yaşadığımdan dolayı Firebase No-Sql Veritabanına geçiş sağladım projenin devam edebilmesi için. 
 Ne denediysem MSSQL Port problemini kişisel bilgisayarımda aşamadım.
+
+
+
+04.06.2021 Edit:
+Projenin veritabanı işlemleri tamamen bitti, Firebase üzerindeki tüm veritabanı işlemleri aktif olarak çalışır durumda (GETIR,GUNCELLE,SIL,EKLE) Projenin görsel arayüzünde
+çok başarılı olamadım.
