@@ -22,6 +22,20 @@ namespace DenemeCss
         
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["Nickname"] == null)
+            {
+                registerbutton.Visible = true;
+                loginbutton.Visible = true;
+                logininfo.Visible = false;
+            }
+            else
+            {
+                registerbutton.Visible = false;
+                loginbutton.Visible = false;
+                logininfo.Visible = true;
+                logininfo.Text = "" + Session["Nickname"];
+
+            }
             try
             {
                 client = new FireSharp.FirebaseClient(ifc);
@@ -35,18 +49,20 @@ namespace DenemeCss
 
         protected void btn_kayit_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txt_ad.Text) &&
+            if (string.IsNullOrWhiteSpace(txt_nickname.Text) &&
+                string.IsNullOrWhiteSpace(txt_ad.Text) &&
                 string.IsNullOrWhiteSpace(txt_soyad.Text) &&
                 string.IsNullOrWhiteSpace(txt_eposta.Text) &&
                 string.IsNullOrWhiteSpace(txt_sifre.Text) &&
                 string.IsNullOrWhiteSpace(DropDownList1.Text) &&
                 string.IsNullOrWhiteSpace(DropDownList2.Text))
             {
-                lbl_uyari.Text = "Lütfen Tüm Alanları Doldurunuz";
+                lbl_hatalar.Text = "Lütfen Tüm Alanları Doldurunuz";
             }
 
-            ClassLibrary.Uyeler uye = new ClassLibrary.Uyeler()
+            Uye uye = new Uye()
             {
+                Nickname = txt_nickname.Text,
                 UyeAd = txt_ad.Text,
                 UyeSoyad = txt_soyad.Text,
                 UyeEposta = txt_eposta.Text,
@@ -55,9 +71,9 @@ namespace DenemeCss
                 FavLegend = DropDownList2.Text
             };
 
-            SetResponse set = client.Set(@"Users/" + txt_eposta.Text, uye);
+            SetResponse set = client.Set(@"Users/" + txt_nickname.Text, uye);
             
-
+            
             
 
 
